@@ -4,6 +4,7 @@
     <el-form :model="sonForm" ref="sonForm" label-width="80px">
       <el-form-item label="所属版块">
         <el-select v-model="sonForm.fatherModuleId" placeholder="请选择">
+          <!-- 表面上是选名字，其实提交过去的是id值 -->
           <el-option v-for="item in options" :key="item.value" :value="item.id" :label="item.module_name">
           </el-option>
         </el-select>
@@ -71,7 +72,7 @@
       async getFather(){
         await this.$axios.get("http://localhost/php/sfkbbs/admin/son_module_add.php").then(result=>{
           this.options = result.data;
-          // console.log(result.data);  
+          // console.log(result.data);
         })
       }
     }

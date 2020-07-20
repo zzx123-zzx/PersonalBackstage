@@ -53,6 +53,8 @@
         })
         this.publishFrom.member = this.$store.state.loginUser;     //可以换成去浏览器去拿
       },
+      
+      //发布文章具体内容
       async postContent(){
         let oForm = document.getElementById('form1');
         let formData = new FormData(oForm);

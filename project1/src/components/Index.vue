@@ -4,12 +4,10 @@
   <el-container>
     <el-aside width="200px">
           <el-menu>
-            <el-submenu index="1">
-              <template slot="title">
+            <el-menu-item index="1">
                 <i class="el-icon-location"></i>
                 <span><router-link :to="{name:'fatherPlate'}">父板块列表</router-link></span>
-              </template>
-            </el-submenu>
+            </el-menu-item>
             <el-menu-item index="2">
               <i class="el-icon-menu"></i>
               <span slot="title"><router-link :to="{name:'fatherModuleAdd'}">添加父板块</router-link></span>
@@ -24,7 +22,11 @@
             </el-menu-item>
             <el-menu-item index="5">
               <i class="el-icon-setting"></i>
-              <span slot="title"><router-link :to="{name:'publish'}">发布文章</router-link></span>
+              <span slot="title"><router-link :to="{name:'publish'}">发布文章吧</router-link></span>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <i class="el-icon-setting"></i>
+              <span slot="title"><router-link :to="{name:'banner'}">管理轮播图</router-link></span>
             </el-menu-item>
           </el-menu>
     </el-aside>
@@ -69,13 +71,13 @@ export default {
     }
 
     .el-header, .el-footer {
-      background-color: #B3C0D1;
+      background-color: midnightblue;
       color: #333;
       text-align: center;
     }
 
     .el-aside {
-      background-color: #D3DCE6;
+      background-color: midnightblue;
       color: #333;
       text-align: center;
       line-height: 200px;
@@ -84,5 +86,11 @@ export default {
     .el-main {
       background-color: #E9EEF3;
       color: #333;
+    }
+    .el-menu-item, .el-submenu{
+      background-color: midnightblue;
+    }
+    a{
+     color: white;
     }
 </style>

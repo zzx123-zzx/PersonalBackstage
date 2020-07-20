@@ -7,6 +7,7 @@ import fatherModuleUpdate from '@/components/fatherModuleUpate.vue'
 import sonModuleAdd from '@/components/sonModuleAdd.vue'
 import sonPlate from '@/components/sonPlate.vue'
 import sonModuleUpdate from '@/components/sonModuleUpdate.vue'
+import banner from '@/components/banner.vue'
 
 import reg from '@/components/reg.vue'
 import login from '@/components/login.vue'
@@ -30,7 +31,8 @@ const router = new Router({
         {path:'sonModuleAdd',name:'sonModuleAdd',component:sonModuleAdd},
         {path:'sonPlate',name:'sonPlate',component:sonPlate},
         {path:'sonModuleUpdate/:id',name:'sonModuleUpdate',component:sonModuleUpdate},
-        {path:'publish',name:'publish',component:publish}
+        {path:'publish',name:'publish',component:publish},
+        {path:'banner',name:'banner',component:banner}
       ]
     },
     {
