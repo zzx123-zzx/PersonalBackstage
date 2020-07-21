@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">添加子版块</div>
-    <el-form :model="sonForm" ref="sonForm" label-width="80px">
+    <el-form :model="sonForm" ref="sonForm" label-width="80px" id="form1">
       <el-form-item label="所属版块">
         <el-select v-model="sonForm.fatherModuleId" placeholder="请选择">
           <!-- 表面上是选名字，其实提交过去的是id值 -->
@@ -11,6 +11,9 @@
       </el-form-item>
       <el-form-item label="版块名称">
         <el-input v-model="sonForm.sonMoudleName"></el-input>
+      </el-form-item>
+      <el-form-item label="选择图片">
+        <input type="file" v-on:change="onChange($event)"/>
       </el-form-item>
       <el-form-item label="简介内容">
         <textarea v-model="sonForm.info"></textarea>
@@ -42,7 +45,8 @@
           sonModuleSort:'',
           fatherModuleId:'',
           info:'',
-          memberId:''
+          memberId:'',
+          src:''
         },
         options:[],
         memBerOptions:[
@@ -57,8 +61,20 @@
       this.getFather()
     },
     methods:{
+     onChange(event){
+       this.sonForm.src = event.target.files[0];
+     },
      async onsumbit(){
-        await this.$axios.post("http://localhost/php/sfkbbs/admin/son_module_add.php",stringify(this.sonForm)).then(result=>{
+       let oForm = document.getElementById('form1');
+       let formData = new FormData(oForm);
+
+       formData.append('file',this.sonForm.src);
+       formData.append('fatherModuleId',this.sonForm.fatherModuleId);
+       formData.append('sonMoudleName',this.sonForm.sonMoudleName);
+       formData.append('info',this.sonForm.info);
+       formData.append('memberId',this.sonForm.memberId);
+       formData.append('sonModuleSort',this.sonForm.sonModuleSort);
+       await this.$axios.post("http://localhost/php/sfkbbs/admin/son_module_add2.php",formData).then(result=>{
           if(result.data =='200'){
             this.$message({
               showClose:'true',
@@ -66,6 +82,7 @@
               type:'success'
             })
           }
+          console.log(result.data);
         });
       },
       //获取所有父版块

@@ -33,9 +33,9 @@
           console.log(result.data);
           if(result.data=='200'){
             console.log('aaaa');
-            sessionStorage.setItem("token",result.data.token);
-            this.$router.push("/index");
             this.VuexFunction(this.regFrom.username);
+            sessionStorage.setItem("token",this.$store.state.loginUser);
+            this.$router.push("/index");
           }
         })
       }
