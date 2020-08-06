@@ -11,7 +11,7 @@
       <el-form-item label="输入标题">
         <el-input v-model="publishFrom.title"></el-input>
       </el-form-item>
-      <el-form-item label="请选择图片">
+      <el-form-item label="选择图片" class="file">
         <input type="file" v-on:change="onChange($event)" id="file" value="">
       </el-form-item>
       <el-form-item label="编写内容">
@@ -48,12 +48,13 @@
         console.log(this.publishFrom.filename);
       },
       async getSonModule(){
-        await this.$axios.get("http://localhost/php/sfkbbs/admin/son_module.php").then(result=>{
+        await this.$axios.get("admin/son_module.php").then(result=>{
           this.options = result.data;
         })
-        this.publishFrom.member = this.$store.state.loginUser;     //可以换成去浏览器去拿
+        // this.publishFrom.member = this.$store.state.loginUser;     //可以换成去浏览器去拿
+        this.publishFrom.member = sessionStorage.getItem('token');  //获取登录的用户名
       },
-      
+
       //发布文章具体内容
       async postContent(){
         let oForm = document.getElementById('form1');
@@ -64,16 +65,18 @@
         formData.append('title',this.publishFrom.title);
         formData.append('content',this.publishFrom.content);
         formData.append('member',this.publishFrom.member);
-        await this.$axios.post("http://localhost/php/sfkbbs/admin/upload.php",formData).then(result=>{
-          console.log(result.data);
+        await this.$axios.post("admin/upload.php",formData).then(result=>{
+           if(result.data=='200'){
+             this.$message({
+               message:'发布成功',
+               type:'success'
+             })
+           }
+           this.publishFrom.content = '';
+           this.publishFrom.title = '';
+           this.publishFrom.sonModuleId = '';
         })
       }
-      //发布帖子内容
-      // async postContent(){
-      //   await this.$axios.post("http://localhost/php/sfkbbs/user/publish.php",stringify(this.publishFrom)).then(result=>{
-      //     console.log(result.data);
-      //   })
-      // }
     }
   }
 </script>
@@ -81,4 +84,30 @@
 <style scoped>
   .el-input{width: 300px;}
   .title{height: 50px; background-color: #CCCCCC; display: flex; align-items: center;}
+  .file {
+      position: relative;
+      display: inline-block;
+      background: #D0EEFF;
+      border: 1px solid #99D3F5;
+      border-radius: 4px;
+      padding: 4px 12px;
+      overflow: hidden;
+      color: #1E88C7;
+      text-decoration: none;
+      text-indent: 0;
+      line-height: 20px;
+  }
+  .file input {
+      position: absolute;
+      font-size: 50px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+  }
+  .file:hover {
+      background: #AADFFD;
+      border-color: #78C3F3;
+      color: #004974;
+      text-decoration: none;
+  }
 </style>

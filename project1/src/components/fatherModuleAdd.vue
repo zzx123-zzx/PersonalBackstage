@@ -32,7 +32,7 @@
         },
         methods: {
           async onSubmit() {
-              await this.$axios.post("http://localhost/php/sfkbbs/admin/father_module_add.php",stringify(this.ruleForm)).then(result=>{
+              await this.$axios.post("admin/father_module_add.php",stringify(this.ruleForm)).then(result=>{
                 if(result.data =='200'){
                   this.$message({
                             showClose: true,

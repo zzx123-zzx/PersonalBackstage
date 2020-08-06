@@ -11,6 +11,7 @@ Vue.use(ElementUI);
 
 import axios from 'axios';
 Vue.prototype.$axios = axios;
+axios.defaults.baseURL = "http://localhost/php/sfkbbs/";
 
 Vue.config.productionTip = false
 

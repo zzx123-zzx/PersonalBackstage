@@ -29,7 +29,7 @@
     methods:{
       ...mapActions(['VuexFunction']),
       async postMessage(){
-        await this.$axios.post("http://localhost/php/sfkbbs/user/login.php",stringify(this.regFrom)).then(result=>{
+        await this.$axios.post("user/login.php",stringify(this.regFrom)).then(result=>{
           console.log(result.data);
           if(result.data=='200'){
             console.log('aaaa');

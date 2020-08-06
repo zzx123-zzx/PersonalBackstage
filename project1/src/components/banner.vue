@@ -57,13 +57,13 @@
           for(var n = 0; n<this.forms.fileArray.length; n++){
               formData.append('file'+n,this.forms.fileArray[n]);
           }
-          await this.$axios.post("http://localhost/php/sfkbbs/admin/banner.php",formData,{headers:headers}).then(result=>{
+          await this.$axios.post("admin/banner.php",formData,{headers:headers}).then(result=>{
             console.log(result.data);
           })
         },
         //获取轮播图数据
         async getBanner(){
-          await this.$axios.get("http://localhost/php/sfkbbs/admin/banner.php").then(result=>{
+          await this.$axios.get("admin/banner.php").then(result=>{
             console.log(result.data);
             this.banner_src = result.data;
           })
@@ -72,7 +72,7 @@
 
         },
         async deleteBanner(id){
-          await this.$axios.get("http://localhost/php/sfkbbs/admin/banner_delete.php?id="+id).then(result=>{
+          await this.$axios.get("admin/banner_delete.php?id="+id).then(result=>{
             console.log(result.data);
             if(result.data=='200'){
               this.getBanner();

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="title">添加子版块</div>
+    <div class="title">添加兴趣部落</div>
     <el-form :model="sonForm" ref="sonForm" label-width="80px" id="form1">
       <el-form-item label="所属版块">
         <el-select v-model="sonForm.fatherModuleId" placeholder="请选择">
@@ -12,11 +12,11 @@
       <el-form-item label="版块名称">
         <el-input v-model="sonForm.sonMoudleName"></el-input>
       </el-form-item>
-      <el-form-item label="选择图片">
+      <el-form-item label="选择图片" class="file">
         <input type="file" v-on:change="onChange($event)"/>
       </el-form-item>
       <el-form-item label="简介内容">
-        <textarea v-model="sonForm.info"></textarea>
+        <textarea v-model="sonForm.info" rows="10" style="width: 500px;"></textarea>
       </el-form-item>
       <el-form-item label="版块排序">
         <el-input v-model="sonForm.sonModuleSort"></el-input>
@@ -74,7 +74,7 @@
        formData.append('info',this.sonForm.info);
        formData.append('memberId',this.sonForm.memberId);
        formData.append('sonModuleSort',this.sonForm.sonModuleSort);
-       await this.$axios.post("http://localhost/php/sfkbbs/admin/son_module_add2.php",formData).then(result=>{
+       await this.$axios.post("admin/son_module_add2.php",formData).then(result=>{
           if(result.data =='200'){
             this.$message({
               showClose:'true',
@@ -87,7 +87,7 @@
       },
       //获取所有父版块
       async getFather(){
-        await this.$axios.get("http://localhost/php/sfkbbs/admin/son_module_add.php").then(result=>{
+        await this.$axios.get("admin/son_module_add.php").then(result=>{
           this.options = result.data;
           // console.log(result.data);
         })
@@ -99,4 +99,30 @@
 <style lang="less" scoped>
   .el-input{width: 300px;}
   .title{height: 50px; background-color: #CCCCCC; display: flex; align-items: center;}
+  .file {
+      position: relative;
+      display: inline-block;
+      background: #D0EEFF;
+      border: 1px solid #99D3F5;
+      border-radius: 4px;
+      padding: 4px 12px;
+      overflow: hidden;
+      color: #1E88C7;
+      text-decoration: none;
+      text-indent: 0;
+      line-height: 20px;
+  }
+  .file input {
+      position: absolute;
+      font-size: 50px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+  }
+  .file:hover {
+      background: #AADFFD;
+      border-color: #78C3F3;
+      color: #004974;
+      text-decoration: none;
+  }
 </style>

@@ -53,7 +53,7 @@
           return;
        }
 
-       await this.$axios.post("http://localhost/php/sfkbbs/admin/father_module_update.php",stringify(this.updateFrom)).then(result=>{
+       await this.$axios.post("admin/father_module_update.php",stringify(this.updateFrom)).then(result=>{
           if(result.data =='200'){
             this.$message({
                       showClose: true,
@@ -66,7 +66,7 @@
      },
      //获取具体的版块名称
      async getPlate(){
-      await this.$axios.get("http://localhost/php/sfkbbs/admin/father_module_update.php?id="+this.updateFrom.id).then(result=>{
+      await this.$axios.get("admin/father_module_update.php?id="+this.updateFrom.id).then(result=>{
         this.module_name = result.data.module_name;
         this.module_sort = result.data.sort;
         console.log(result.data);

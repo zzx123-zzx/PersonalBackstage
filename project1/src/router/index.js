@@ -8,11 +8,13 @@ import sonModuleAdd from '@/components/sonModuleAdd.vue'
 import sonPlate from '@/components/sonPlate.vue'
 import sonModuleUpdate from '@/components/sonModuleUpdate.vue'
 import banner from '@/components/banner.vue'
+import recommend from '@/components/recommend.vue'
 
 import reg from '@/components/reg.vue'
 import login from '@/components/login.vue'
 
 import publish from '@/components/publish.vue'
+import allArticle from '@/components/allArticle.vue'
 
 // import homePage from '@/components/index/homePage.vue'
 // import content from '@/components/index/content.vue'
@@ -32,7 +34,9 @@ const router = new Router({
         {path:'sonPlate',name:'sonPlate',component:sonPlate},
         {path:'sonModuleUpdate/:id',name:'sonModuleUpdate',component:sonModuleUpdate},
         {path:'publish',name:'publish',component:publish},
-        {path:'banner',name:'banner',component:banner}
+        {path:'banner',name:'banner',component:banner},
+        {path:'allArticle',name:'allArticle',component:allArticle},
+        {path:'recommend',name:'recommend',component:recommend}
       ]
     },
     {

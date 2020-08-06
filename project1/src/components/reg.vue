@@ -31,7 +31,7 @@
     },
     methods:{
       async postMessage(){
-        await this.$axios.post("http://localhost/php/sfkbbs/user/register.php",stringify(this.regFrom)).then(result=>{
+        await this.$axios.post("user/register.php",stringify(this.regFrom)).then(result=>{
           console.log(result.data);
         })
       }

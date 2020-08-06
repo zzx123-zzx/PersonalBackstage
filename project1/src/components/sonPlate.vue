@@ -1,32 +1,46 @@
 <template>
- <div>
+ <!-- <div>
     <div class="AllPlateTitle">子版块列表</div>
     <div class="AllPlateName">
-      <div>排序</div>
-      <div>板块名称</div>
+      <div>文章名称 </div>
       <div>操作</div>
-      <div>所属父版块</div>
-      <div>版主</div>
+      <div>所属类别</div>
     </div>
     <div class="AllPlateBodyContainer" v-for="item in sonAllPlate">
-      <div>
-        <input type="text" style="width: 50px;"/>
-      </div>
       <div>
         {{item.module_name}}[id:{{item.id}}]
       </div>
       <div>
         <router-link :to="'sonModuleUpdate/'+item.id">修改</router-link>
-        <input type="button" value="删除" @click="del(item.id,item.module_name)"/>
+        <el-button type="primary" @click="del(item.id,item.module_name)">删除</el-button>
       </div>
       <div>
         {{item.father_module_name}}
       </div>
-      <div>
-        {{item.member_id}}
-      </div>
     </div>
-  </div>
+  </div> -->
+      <el-table
+        :data="sonAllPlate"
+        style="width: 100%">
+        <el-table-column
+          prop="father_module_name"
+          label="所属类别"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="module_name"
+          label="文章名称">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="操作"
+          width="180">
+          <template slot-scope="scope">
+                  <router-link :to="'sonModuleUpdate/'+scope.row.id">修改</router-link>
+                  <el-button type="primary" @click="del(scope.row.id,scope.row.module_name)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
 </template>
 
 <script>
@@ -42,12 +56,12 @@
     },
     methods:{
       getAllSonList(){
-         this.$axios.get("http://localhost/php/sfkbbs/admin/son_module.php").then(result=>{
+         this.$axios.get("admin/son_module.php").then(result=>{
           this.sonAllPlate = result.data;
         })
       },
       async delFunction(id){
-        await this.$axios.post("http://localhost/php/sfkbbs/admin/son_module_delete.php?id="+id).then(result=>{
+        await this.$axios.post("admin/son_module_delete.php?id="+id).then(result=>{
           this.getAllSonList();
         })
       },
@@ -79,8 +93,9 @@
 </script>
 
 <style lang="less" scoped>
+  a{text-decoration: none;}
   .container{}
-  .AllPlateTitle{background-color: #CCCCCC; line-height: 50px; text-align: left;}
+  .AllPlateTitle{background-color: #CCCCCC; line-height: 50px; text-align: left;box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);}
   .AllPlateName{
     width: 600px;
     display: flex;
@@ -89,6 +104,6 @@
   .AllPlateName div{width: 200px;line-height: 50px; text-align: center;}
 
   /*主体内容容器样式*/
-  .AllPlateBodyContainer{width: 600px; line-height: 50px;display: flex; flex-wrap: nowrap;}
-  .AllPlateBodyContainer div{width: 200px; line-height: 50px; background: #8CC5FF; text-align: center;}
+  .AllPlateBodyContainer{width: 600px; line-height: 50px;display: flex; flex-wrap: nowrap;box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);}
+  .AllPlateBodyContainer div{width: 200px; line-height: 50px; background: #C8C9CC; text-align: center;}
 </style>

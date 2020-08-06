@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <div class="AllPlateTitle">父版块列表</div>
     <div class="AllPlateName">
       <div>排序</div>
@@ -8,18 +8,37 @@
     </div>
     <div class="AllPlateBodyContainer" v-for="item in AllPlate">
       <div>
-        <input type="text" :value="item.sort" ref="sortInput"/>    
+        <input type="text" :value="item.sort" ref="sortInput"/>
       </div>
       <div>
         {{item.module_name}}
       </div>
       <div>
         <router-link :to="'fatherModuleUpdate/'+item.id">修改</router-link>
-        <input type="button" value="删除" @click="del(item.id,item.module_name)"/>
+        <el-button type="primary" @click="del(item.id,item.module_name)">删除</el-button>
       </div>
     </div>
-    <input type="button" value="排序" @click="ref()"/>
-  </div>
+  </div> -->
+     <el-table
+        :data="AllPlate"
+        style="width: 100%">
+        <el-table-column
+          prop="module_name"
+          label="版块名称"
+          width="300">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="操作"
+          width="180">
+          <template slot-scope="scope">
+                  <router-link :to="'fatherModuleUpdate/'+scope.row.id">修改</router-link>
+                  <el-button type="primary" @click="del(scope.row.id,scope.row.module_name)">删除</el-button>
+                  <!-- <router-link :to="'sonModuleUpdate/'+scope.row.id">修改</router-link>
+                  <el-button type="primary" @click="del(scope.row.id,scope.row.module_name)">删除</el-button> -->
+          </template>
+        </el-table-column>
+      </el-table>
 </template>
 
 <script>
@@ -41,14 +60,14 @@ export default{
         let indexArr = [];
       },
       release(){
-          this.$axios.get("http://localhost/php/sfkbbs/admin/father_module.php").then(result=>{
+          this.$axios.get("admin/father_module.php").then(result=>{
            this.AllPlate = result.data;
            // this.sortId = result.data.id;
            // console.log(result.data.id);
         })
       },
       async DeletdAllpate(id){
-        await this.$axios.get("http://localhost/php/sfkbbs/admin/father_module_delete.php?id="+id).then(result=>{
+        await this.$axios.get("admin/father_module_delete.php?id="+id).then(result=>{
         })
       },
       del(id,module_name){
@@ -83,15 +102,14 @@ export default{
 
 <style scoped lang="less">
     .container{}
-    .AllPlateTitle{background-color: #CCCCCC; line-height: 50px; text-align: left;}
+    .AllPlateTitle{background-color: #C0CCDA; line-height: 50px; text-align: left;box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);}
     .AllPlateName{
       width: 600px;
       display: flex;
       flex-wrap: nowrap;
     }
     .AllPlateName div{width: 200px;line-height: 50px; text-align: center;}
-
     /*主体内容容器样式*/
-    .AllPlateBodyContainer{width: 600px; line-height: 50px;display: flex; flex-wrap: nowrap;}
-    .AllPlateBodyContainer div{width: 200px; line-height: 50px; background: #8CC5FF; text-align: center;}
+    .AllPlateBodyContainer{width: 600px; line-height: 50px;display: flex; flex-wrap: nowrap;box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);}
+    .AllPlateBodyContainer div{width: 200px; line-height: 50px; background: #C0CCDA; text-align: center;}
 </style>
