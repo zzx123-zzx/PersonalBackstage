@@ -4,7 +4,7 @@
       <HeaderComponent :username="loginUsername"></HeaderComponent>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="15%">
         <el-menu>
           <el-menu-item index="1">
             <i class="el-icon-s-order"></i>
@@ -54,6 +54,12 @@
               <router-link :to="{name:'recommend'}">推荐--文章</router-link>
             </span>
           </el-menu-item>
+          <el-menu-item index="9">
+            <i class="el-icon-thumb"></i>
+            <span slot="title">
+              <router-link :to="{name:'evaluate'}">管理--评论</router-link>
+            </span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>
@@ -98,22 +104,22 @@
 <style lang="less" scoped>
   .homeHieght {
     height: 100vh;
+    overflow: hidden;
+    margin: 0; padding: 0;
   }
 
   .el-header,
   .el-footer {
-    background-color: #003371;
+    background-color: #003366;
     color: white;
     text-align: center;
   }
 
   .el-aside {
-    background-color: #003371;
+    background-color: #003366;
     color: #333;
     text-align: center;
-    line-height: 200px;
   }
-
   .el-main {
     background-color: #E9EEF3;
     color: #333;
@@ -121,7 +127,7 @@
 
   .el-menu-item,
   .el-submenu {
-    background-color: #003371;
+    background-color: #003366;
   }
 
   a {

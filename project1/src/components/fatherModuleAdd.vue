@@ -25,7 +25,7 @@
               //版块内容验证
               moduleName: [
                   { required: true, message: '版块内容不能为空', trigger: 'blur' },
-                  { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                  { min: 3, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
               ]
             }
           };

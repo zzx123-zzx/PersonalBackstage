@@ -15,6 +15,7 @@ import login from '@/components/login.vue'
 
 import publish from '@/components/publish.vue'
 import allArticle from '@/components/allArticle.vue'
+import evaluate from '@/components/evaluate.vue'
 
 // import homePage from '@/components/index/homePage.vue'
 // import content from '@/components/index/content.vue'
@@ -36,7 +37,8 @@ const router = new Router({
         {path:'publish',name:'publish',component:publish},
         {path:'banner',name:'banner',component:banner},
         {path:'allArticle',name:'allArticle',component:allArticle},
-        {path:'recommend',name:'recommend',component:recommend}
+        {path:'recommend',name:'recommend',component:recommend},
+        {path:'evaluate',name:'evaluate',component:evaluate}
       ]
     },
     {

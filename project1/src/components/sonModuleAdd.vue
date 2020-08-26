@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="title">添加兴趣部落</div>
     <el-form :model="sonForm" ref="sonForm" label-width="80px" id="form1">
       <el-form-item label="所属版块">
         <el-select v-model="sonForm.fatherModuleId" placeholder="请选择">
@@ -14,6 +13,9 @@
       </el-form-item>
       <el-form-item label="选择图片" class="file">
         <input type="file" v-on:change="onChange($event)"/>
+      </el-form-item>
+      <el-form-item :label='filename' style="background-color: red;text-align: left;" label-width="auto">
+        <!-- <i class="el-alert--error"></i> -->
       </el-form-item>
       <el-form-item label="简介内容">
         <textarea v-model="sonForm.info" rows="10" style="width: 500px;"></textarea>
@@ -48,6 +50,7 @@
           memberId:'',
           src:''
         },
+        filename:'',
         options:[],
         memBerOptions:[
           {
@@ -63,6 +66,7 @@
     methods:{
      onChange(event){
        this.sonForm.src = event.target.files[0];
+       this.filename = '图片名称:'+event.target.files[0].name;
      },
      async onsumbit(){
        let oForm = document.getElementById('form1');

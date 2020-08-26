@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-
+<style lang="less">
+   body{margin:0;}
 </style>

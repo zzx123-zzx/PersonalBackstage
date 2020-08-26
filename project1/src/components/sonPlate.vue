@@ -52,13 +52,19 @@
       }
     },
     async created(){
-      this.getAllSonList()
+      this.getAllSonList(),
+      this.show()
     },
     methods:{
-      getAllSonList(){
-         this.$axios.get("admin/son_module.php").then(result=>{
+      async getAllSonList(){
+         await this.$axios.get("admin/son_module.php").then(result=>{
           this.sonAllPlate = result.data;
+          // console.log(result.data);
+          // console.log('ssss');
         })
+      },
+      show(){
+        console.log('aaaa');
       },
       async delFunction(id){
         await this.$axios.post("admin/son_module_delete.php?id="+id).then(result=>{

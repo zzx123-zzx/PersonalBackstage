@@ -62,6 +62,11 @@ export default{
       release(){
           this.$axios.get("admin/father_module.php").then(result=>{
            this.AllPlate = result.data;
+           if(this.AllPlate!=''){
+             return;
+           }
+           console.log('aaaassadadad');
+           // console.log('aaaassss');
            // this.sortId = result.data.id;
            // console.log(result.data.id);
         })
