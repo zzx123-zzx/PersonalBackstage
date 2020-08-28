@@ -60,6 +60,12 @@
               <router-link :to="{name:'evaluate'}">管理--评论</router-link>
             </span>
           </el-menu-item>
+          <el-menu-item index="10">
+            <i class="el-icon-thumb"></i>
+            <span slot="title">
+              <router-link :to="{name:'contact'}">管理--留言</router-link>
+            </span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main>

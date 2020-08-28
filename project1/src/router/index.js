@@ -16,6 +16,7 @@ import login from '@/components/login.vue'
 import publish from '@/components/publish.vue'
 import allArticle from '@/components/allArticle.vue'
 import evaluate from '@/components/evaluate.vue'
+import contact from '@/components/contact.vue'
 
 // import homePage from '@/components/index/homePage.vue'
 // import content from '@/components/index/content.vue'
@@ -38,7 +39,8 @@ const router = new Router({
         {path:'banner',name:'banner',component:banner},
         {path:'allArticle',name:'allArticle',component:allArticle},
         {path:'recommend',name:'recommend',component:recommend},
-        {path:'evaluate',name:'evaluate',component:evaluate}
+        {path:'evaluate',name:'evaluate',component:evaluate},
+        {path:'contact',name:'contact',component:contact}
       ]
     },
     {
